@@ -43,6 +43,7 @@ public class Menu
 
         var rowsPredicate = new Predicate<int>((value) => value > 0 && value <= matrix.RowsCount);
         Console.WriteLine(menu);
+        Console.Write("Пункт меню > ");
         
         while (true)
         {
