@@ -1,8 +1,9 @@
 ﻿using System.Configuration;
+using WorkingWithStrings.Abstract;
 
 namespace WorkingWithStrings.Configuration;
 
-internal class AppConfiguration
+internal class AppConfiguration : IConfiguration
 {
     public bool UseConfigMenuItem { get; private set; }
     public bool ReadFromFile { get; private set; }
@@ -18,6 +19,8 @@ internal class AppConfiguration
 
     public void ReadValues()
     {
+        ConfigurationManager.RefreshSection("appSettings");
+
         InputFilePath = ConfigurationManager.AppSettings[nameof(InputFilePath)] ?? "defaultInput.txt";
         OutputFilePath = ConfigurationManager.AppSettings[nameof(OutputFilePath)] ?? "defaultOutput.txt";
         MenuItem = GetInt32Value(nameof(MenuItem));

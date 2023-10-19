@@ -17,6 +17,14 @@ internal abstract class ResultCommandBase : ICommand
 
     public void Execute()
     {
-        _outputProvider.WriteResult(GetResult());
+        try
+        {
+            _outputProvider.WriteResult(GetResult());
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Cannot write output");
+            Console.WriteLine(ex);
+        }
     }
 }

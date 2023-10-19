@@ -44,6 +44,6 @@ internal class ConsoleInputProvider : IInputProvider
         Console.Write($"{_prompt} > ");
         var line = Console.ReadLine();
 
-        return line ?? String.Empty
+        return line ?? String.Empty;
     }
 }

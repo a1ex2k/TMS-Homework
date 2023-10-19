@@ -16,7 +16,19 @@ internal class StringOperationsMenu
 
     public void Start(int commandNumber = -1)
     {
-        var text = _inputProvider.Read();
+        string text = default!;
+
+        try
+        {
+            text = _inputProvider.Read();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Cannot read text");
+            Console.WriteLine(ex);
+            return;
+        }
+
         var stringAnalyzer = new StringAnalyzer(text);
 
         var commands = new List<ICommand>
