@@ -22,7 +22,6 @@ public class Menu
     public void PrintError(string text)
     {
         Write(text, ConsoleColor.Red, true);
-
     }
 
     public void PrintMenu()
@@ -30,9 +29,9 @@ public class Menu
         Write(_title, ConsoleColor.Yellow);
         foreach (var pair in _items)
         {
-            Console.WriteLine($"    {pair.Key}  =>  {pair.Value}");
+            Console.WriteLine($"   {pair.Key}  =>  {pair.Value}");
         }
-        Console.WriteLine($"    {ExitKey}  =>  Exit this menu");
+        Console.WriteLine($"   {ExitKey}  =>  Exit this menu");
 
     }
 
@@ -61,7 +60,7 @@ public class Menu
     }
 
 
-    private void Write(string text, ConsoleColor color, bool newLine = true)
+    public void Write(string text, ConsoleColor color, bool newLine = true)
     {
         var prevColor = Console.ForegroundColor;
         Console.ForegroundColor = color;

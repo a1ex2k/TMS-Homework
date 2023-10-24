@@ -59,17 +59,19 @@ public class ToDoListConsoleManager
 
     private void PrintAll()
     {
-        Console.WriteLine("- - - New - - -");
+        _menu.Write("- - - New - - -", ConsoleColor.Blue);
         foreach (var pair in _taskList.Where(p => !p.Value.IsCompleted))
         {
             Console.WriteLine(pair.ToMenuString());
         }
 
-        Console.WriteLine("- - - Completed - - -");
+        _menu.Write("- - - Completed - - -", ConsoleColor.Green);
         foreach (var pair in _taskList.Where(p => p.Value.IsCompleted))
         {
             Console.WriteLine(pair.ToMenuString());
         }
+
+        Console.WriteLine();
     }
 
 
