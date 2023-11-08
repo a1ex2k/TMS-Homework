@@ -1,0 +1,56 @@
+﻿@model DetailsModel
+
+@{
+    ViewData["Title"] = $"Task #{Model.ToDoTask.Id} Details";
+}
+
+<div class="display-6">@ViewData["Title"]</div>
+
+<div class="animate shadow-sm bg-white border rounded overflow-hidden px-3 py-4 mt-5 mb-5">
+    <div>
+        <div class="row">
+            <div class="col-1 text-primary fw-bold">Created</div>
+            <div class="col-md-auto">
+                @Model.ToDoTask.CreatedAt.ToString("dd.MM.yyyy, HH:mm:ss")
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1 text-primary fw-bold">Text</div>
+            <div class="col-md-auto">
+                @Model.ToDoTask.Text
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1 text-primary fw-bold">Completed</div>
+            <div class="col-md-auto">
+                @if (Model.ToDoTask.CompletedAt is null)
+                {
+                    <span>Not yet</span>
+                }
+                else
+                {
+                    @Model.ToDoTask.CompletedAt.Value.ToString("dd.MM.yyyy, HH:mm:ss")
+                }
+
+            </div>
+        </div>
+    </div>
+    <div class="mt-3 d-flex align-self-end">
+        @using (Html.BeginForm("Remove", "ToDoList", FormMethod.Post))
+        {
+            <input type="hidden" name="taskId" value="@Model.ToDoTask.Id" />
+            <input type="submit" class="me-1 btn btn-danger" value="Remove" />
+        }
+
+        @if (Model.ToDoTask.CompletedAt is null)
+        {
+            @using (Html.BeginForm("MarkAsCompleted", "ToDoList", FormMethod.Post))
+            {
+                <input type="hidden" name="taskId" value="@Model.ToDoTask.Id" />
+                <input type="submit" class="btn btn-success me-1" value="Mark as completed" />
+            }
+        }
+    </div>
+</div>
+
+@await Html.PartialAsync("_LastAdded", Model.QueuedTasks)

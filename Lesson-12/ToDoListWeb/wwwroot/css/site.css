@@ -1,0 +1,139 @@
+html {
+    font-size: 14px;
+}
+
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+    color: #020202;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: #f8f8f8;
+}
+
+.taskgroup-header {
+    border: 1px solid rgba(34, 60, 80, 0.2);
+    border-radius: 0.5rem;
+    box-shadow: 0px 0px 4px 0px rgba(34, 60, 80, 0.2);
+    background-color: #fefefe;
+    margin-bottom: 1rem;
+    padding: 0.3rem 1rem;
+    font-weight: 600;
+}
+
+.taskcard {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(34, 60, 80, 0.2);
+    border-radius: 0.5rem;
+    box-shadow: 0px 0px 6px 0px rgba(34, 60, 80, 0.2);
+    background-color: #fefefe;
+    padding: 0.8rem 1rem;
+    height: auto;
+    min-height: 10rem;
+    break-inside: avoid-column;
+    margin-bottom: 1rem;
+}
+
+.taskcard.completed {
+    background-color: #f5f5f5;
+}
+
+    .taskcard:hover {
+        box-shadow: 0px 0px 12px 1px rgba(34, 60, 80, 0.3);
+        background-color: #ffffff;
+        height: auto;
+        border-color: rgba(34, 60, 80, 0.3);
+    }
+    .taskcard.completed:hover {
+        box-shadow: 0px 0px 10px 1px rgba(34, 60, 80, 0.2);
+        background-color: #f8f8f8;
+        height: auto;
+    }
+
+        .taskcard:hover .taskcard-footer::before {
+            opacity: 0;
+        }
+
+.taskcard-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    color: #909090;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.taskcard-body {
+    text-align: left;
+    overflow: hidden;
+    white-space: pre-wrap;
+}
+
+
+.taskcard-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: auto;
+    flex-wrap: wrap;
+    color: #707070;
+    position: relative;
+    padding-top: 1rem;
+    font-size: 0.95rem;
+}
+
+.grid-view {
+    column-count: 4;
+    column-fill: balance;
+    height: auto;   
+}
+
+@media (max-width: 1250px) {
+
+    .grid-view {
+        column-count: 3;
+    }
+}
+
+@media (max-width: 920px) {
+
+    .grid-view {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .grid-view {
+        column-count: 1;
+    }
+
+    .taskcard {
+        min-height: auto;
+    }
+       
+}
+
+
+@keyframes append-animate {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+.animate {
+    animation: append-animate .6s linear;
+}

@@ -1,0 +1,60 @@
+﻿@model AllTasksModel
+
+@{
+    ViewData["Title"] = "All your tasks";
+}
+
+<div class="display-6">ToDoList</div>
+
+<div class="mt-5 mb-5">
+    <div class="taskgroup-header text-primary shadow-sm">
+        Queued Tasks
+    </div>
+    <div class="grid-view">
+        @foreach (var task in Model.QueuedTasks)
+        {
+            <div class="taskcard animate">
+                <div class="taskcard-header">
+                    <div>@task.Id</div>
+                    <div>@task.CreatedAt.ToString("dd.MM.yyyy, HH:mm:ss")</div>
+                </div>
+                <div class="taskcard-body">@task.Text</div>
+                <div class="taskcard-footer">
+                    @using (Html.BeginForm("MarkAsCompleted", "ToDoList", FormMethod.Post))
+                    {
+                        <input type="hidden" name="taskId" value="@task.Id" />
+                        <input type="submit" class="btn btn-success me-1 btn-sm" value="Mark as completed" />
+                    }
+                    <a class="btn btn-sm btn-primary" asp-controller="ToDoList" asp-action="Details" asp-route-id="@task.Id">More</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="mt-5 mb-5">
+    <div class="taskgroup-header text-primary shadow-sm">
+        Completed Tasks
+    </div>
+    <div class="grid-view">
+        @foreach (var task in Model.CompletedTasks)
+        {
+            <div class="taskcard completed animate">
+                <div class="taskcard-header">
+                    <div>@task.Id</div>
+                    <div>@task.CreatedAt.ToString("dd.MM.yyyy, HH:mm:ss")</div>
+                </div>
+                <div class="taskcard-body">@task.Text</div>
+                <div class="taskcard-footer">
+                    <div class="text-wrap mt-auto">Completed: @task.CompletedAt.Value.ToString("dd.MM.yyyy, HH:mm:ss")</div>
+                    <a class="d-block btn btn-sm btn-secondary ms-3" asp-controller="ToDoList" asp-action="Details" asp-route-id="@task.Id">More</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+
+

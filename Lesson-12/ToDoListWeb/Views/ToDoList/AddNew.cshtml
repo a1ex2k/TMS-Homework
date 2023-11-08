@@ -1,0 +1,22 @@
+﻿@model AddNewModel
+
+@{
+    ViewData["Title"] = $"Add new task";
+}
+
+<div class="display-6">@ViewData["Title"]</div>
+
+<div class="animate shadow-sm bg-white border rounded overflow-hidden px-3 py-4 mt-5 mb-5">
+    <div>
+        <form asp-controller="ToDoList" asp-action="AddNew">
+            <div class="form-group mb-3">
+                <label for="text">Your new task text</label>
+                <textarea class="form-control" name="text" placeholder="Very important task"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+
+@await Html.PartialAsync("_LastAdded", Model.QueuedTasks)

@@ -1,0 +1,17 @@
+﻿
+<div class="display-6">Last added tasks</div>
+
+<div class="mt-5 mb-5">
+    <div class="grid-view">
+        @foreach (QueuedToDoTaskModel task in Model)
+        {
+            <div class="taskcard animate">
+                <div class="taskcard-header">
+                    <div>@task.Id</div>
+                    <div>@task.CreatedAt.ToString("dd.MM.yyyy, HH:mm:ss")</div>
+                </div>
+                <div class="taskcard-body">@task.Text</div>
+            </div>
+        }
+    </div>
+</div>
