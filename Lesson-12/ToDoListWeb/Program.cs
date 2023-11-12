@@ -1,5 +1,6 @@
 using ToDoListWeb.Services;
 using ToDoListWeb.SourceProviders;
+using ToDoListWeb.Utility;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,11 +16,8 @@ var app = builder.Build();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
+app.UseErrorHandlingMiddleware();
 
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error");
-}
 
 app.MapControllerRoute(
     name: "default",

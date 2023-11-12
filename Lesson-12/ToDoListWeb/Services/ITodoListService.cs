@@ -17,4 +17,6 @@ public interface ITodoListService
     Task<ToDoTask?> RemoveByIdAsync(int id);
 
     Task<ToDoTask?> MarkAsCompletedAsync(int id, DateTime completedAt);
+
+    Task<ToDoTask?> UpdateTextAsync(int id, string text);
 }

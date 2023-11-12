@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using System.Text.Json;
+using ToDoListWeb.Models;
 
 namespace ToDoListWeb.Utility;
 
@@ -16,4 +17,10 @@ public static class TempDataExtensions
         tempData.TryGetValue(key, out o);
         return o == null ? null : JsonSerializer.Deserialize<T>((string)o);
     }
+
+    public static void PutAlert(this ITempDataDictionary tempData, AlertModel alert)
+    {
+        tempData.Put("Alert", alert);
+    }
+
 }

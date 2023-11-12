@@ -95,6 +95,21 @@ public class FileToDoListService : ITodoListService
         return task;
     }
 
+    public async Task<ToDoTask?> UpdateTextAsync(int id, string text)
+    {
+        throw new NotImplementedException();
+        if (!_tasks.TryGetValue(id, out var task) || task.IsCompleted)
+        {
+            return null;
+        }
+
+        var modifiedTask = new ToDoTask(task.Id, text, task.CreatedAt, null);
+        _tasks[modifiedTask.Id] = modifiedTask;
+        
+        await SaveListAsync();
+        return task.Copy();
+    }
+
     public async Task<ToDoTask?> MarkAsCompletedAsync(int id, DateTime dateTime)
     {
         if (!_tasks.TryGetValue(id, out var task))
