@@ -97,7 +97,6 @@ public class FileToDoListService : ITodoListService
 
     public async Task<ToDoTask?> UpdateTextAsync(int id, string text)
     {
-        throw new NotImplementedException();
         if (!_tasks.TryGetValue(id, out var task) || task.IsCompleted)
         {
             return null;
