@@ -1,6 +1,5 @@
 ### 14. Многопоточность и параллельное программирование, библиотека TPL
 
-`
 | Method           | DegreeOfParallelism | Mean      | Error     | StdDev    | Allocated |
 |----------------- |-------------------- |----------:|----------:|----------:|----------:|
 | SumSingleThread  | -                   |  5.316 ms | 0.0130 ms | 0.0058 ms |       5 B |
@@ -31,4 +30,3 @@
 | SumAsParallel    | 10                  | 13.405 ms | 0.0114 ms | 0.0050 ms |    6762 B |
 | SumWithTaskAsync | 10                  |  1.401 ms | 0.0058 ms | 0.0030 ms |    2466 B |
 | SumWithThreads   | 10                  |  1.876 ms | 0.0143 ms | 0.0075 ms |    2611 B |
-`
