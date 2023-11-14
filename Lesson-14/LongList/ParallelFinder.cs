@@ -8,7 +8,7 @@ public class ParallelFinder<TItem>
     private readonly int _degreeOfParallelism;
 
     public ParallelFinder(IList<TItem> list, Func<TItem, bool> predicate, Action<TItem> onFoundAction)
-        : this (list, predicate, onFoundAction, Environment.ProcessorCount - 1)
+        : this(list, predicate, onFoundAction, Environment.ProcessorCount)
     { }
 
 
@@ -21,26 +21,29 @@ public class ParallelFinder<TItem>
     }
 
 
-    public void BeginSearch(CancellationToken cancellationToken = new CancellationToken())
+    public async Task SearchAsync(CancellationToken cancellationToken = new CancellationToken())
     {
         var chunkSize = (_list.Count - 1) / _degreeOfParallelism + 1;
-
+        var tasks = new Task[_degreeOfParallelism];
         for (int i = 0; i < _degreeOfParallelism; i++)
         {
-            var chunkIndex = i;
-            var thread = new Thread(() =>
+            if (cancellationToken.IsCancellationRequested)
             {
-                if (cancellationToken.IsCancellationRequested)
-                {
-                    return;
-                }
+                return;
+            }
 
+            var chunkIndex = i;
+            var task = new Task(() =>
+            {
                 var fromIndex = chunkSize * chunkIndex;
                 var endIndex = Math.Min(chunkSize * (chunkIndex + 1), _list.Count);
                 FindInThread(_list, fromIndex, endIndex, cancellationToken);
             });
-            thread.Start();
+            tasks[i] = task;
+            task.Start();
         }
+
+        await Task.WhenAll(tasks);
     }
 
 
