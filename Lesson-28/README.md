@@ -1,2 +1,2 @@
 ## Exceptions
-[screenshot.png]
+![screenshot](./screenshot.png)
